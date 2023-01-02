@@ -40,7 +40,6 @@
             this.Form04_OrderList = new System.Windows.Forms.ToolStripMenuItem();
             this.Form06_WearingList = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.myTabControlr = new Common.MyTabControlr();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TSButton = new System.Windows.Forms.ToolStripButton();
             this.btnClose = new System.Windows.Forms.ToolStripButton();
@@ -51,6 +50,7 @@
             this.stsUserName = new System.Windows.Forms.ToolStripStatusLabel();
             this.stsNowDateTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.myTabControlr = new Common.MyTabControlr();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -139,15 +139,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // myTabControlr
-            // 
-            this.myTabControlr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.myTabControlr.Location = new System.Drawing.Point(0, 96);
-            this.myTabControlr.Name = "myTabControlr";
-            this.myTabControlr.SelectedIndex = 0;
-            this.myTabControlr.Size = new System.Drawing.Size(800, 354);
-            this.myTabControlr.TabIndex = 1;
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -194,7 +185,7 @@
             this.btnEnd.Text = "종료";
             this.btnEnd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEnd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEnd.Click += new System.EventHandler(this.TSButton_Click);
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
             // statusStrip1
             // 
@@ -240,6 +231,15 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // myTabControlr
+            // 
+            this.myTabControlr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myTabControlr.Location = new System.Drawing.Point(0, 96);
+            this.myTabControlr.Name = "myTabControlr";
+            this.myTabControlr.SelectedIndex = 0;
+            this.myTabControlr.Size = new System.Drawing.Size(800, 354);
+            this.myTabControlr.TabIndex = 1;
             // 
             // Form_Main
             // 

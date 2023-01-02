@@ -17,6 +17,9 @@ namespace WindowsFormsApp1
     {
         public Form_Main()
         {
+            Form_Login _Login = new Form_Login();
+            _Login.ShowDialog();
+            if(_Login.Tag == null) Environment.Exit(0);
             Form_SVConnect SVC = new Form_SVConnect();
             SVC.Show();
             SqlConnection sCon = new SqlConnection(common.DbPath);
@@ -91,10 +94,12 @@ namespace WindowsFormsApp1
                 case "닫기":
                     if (myTabControlr.TabPages.Count > 0) myTabControlr.SelectedTab.Dispose();
                     break;
-                case "종료":
-                    if (MessageBox.Show("프로그램을 종료하시겠습니까?", "프로그램 종료", MessageBoxButtons.YesNo) == DialogResult.Yes) this.Close();
-                    break;
             }
+        }
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("프로그램을 종료하시겠습니까?", "프로그램 종료", MessageBoxButtons.YesNo) == DialogResult.Yes) this.Close();
         }
     }
 }

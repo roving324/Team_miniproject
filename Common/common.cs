@@ -11,81 +11,10 @@ namespace Common
 {
     public class common
     {
-        //public const string DbPath = "Data Source=222.235.141.8; Initial Catalog=TEAM2; User ID= 2JO ; Password = 1234 ";
-        public const string DbPath = "Data Source = (local); Initial Catalog  = TEAM2; Integrated Security = SSPI;";
         public static string sTimer = "";
-        
-        public static void SetComboControl(string sMajorcode, ComboBox cboTemp)
-        {
-            SqlConnection Connect = new SqlConnection(DbPath);
-            DataTable dtTemp = new DataTable();
-            try
-            {
-                // 데이터베이스에 공통기준정보(TB_Standard) 중 품목 유형(ITEMTYPE) 의 정보를
-                // 받아 와서 콤보박스에 등록 하기.
-
-                // 1. 데이터베이스 접속 클래스 설정.
-                // Common.sConn : Assamble 에 등록 되어 있는 데이터베이스 접속 주소.
-                // 데이터 베이스 오픈.
-                Connect.Open();
-                // 2. 품목유형 데이터 리스트 조회 SQL
-                string sSqlSelect = " SELECT ''                         AS ITEMTYPE  ";
-                sSqlSelect += "             ,'ALL'                      AS ITEMTYPE  ";
-                sSqlSelect += "       UNION ALL                                      ";
-                sSqlSelect += "       SELECT ITEMTYPE                   AS ITEMTYPE  ";
-                sSqlSelect += "         FROM TB_ITEMMASTER                           ";
-                sSqlSelect += $"        GROUP BY ITEMTYPE                            ";
-                SqlDataAdapter adapter = new SqlDataAdapter(sSqlSelect, Connect);
-                adapter.Fill(dtTemp);
-
-                cboTemp.DataSource = dtTemp;
-                cboTemp.ValueMember = "CODENAME";
-                cboTemp.DisplayMember = "CODE_NAME"; // 사용자에게 보여줄 컬럼.
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-                Connect.Close();
-            }
-        }
-
-        public static void SetComboControl(ComboBox cboItemMaster)
-        {
-            SqlConnection Connect = new SqlConnection(DbPath);
-            DataTable dtTemp = new DataTable();
-            try
-            {
-                // 데이터베이스에 공통기준정보(TB_Standard) 중 품목 유형(ITEMTYPE) 의 정보를
-                // 받아 와서 콤보박스에 등록 하기.
-
-                // 1. 데이터베이스 접속 클래스 설정.
-                // Common.sConn : Assamble 에 등록 되어 있는 데이터베이스 접속 주소.
-                // 데이터 베이스 오픈.
-                Connect.Open();
-                // 2. 품목유형 데이터 리스트 조회 SQL
-                string sSqlSelect = string.Empty;
-                sSqlSelect += "       SELECT  ITEMCODE                   AS CODE_ID  ";
-                sSqlSelect += "             ,'['+ ITEMCODE + ']' + ITEMNAME AS CODE_NAME ";
-                sSqlSelect += "         FROM TB_ITEMMASTER2                          ";
-                SqlDataAdapter adapter = new SqlDataAdapter(sSqlSelect, Connect);
-                adapter.Fill(dtTemp);
-
-                cboItemMaster.DataSource = dtTemp;
-                cboItemMaster.ValueMember = "CODE_ID";
-                cboItemMaster.DisplayMember = "CODE_NAME"; // 사용자에게 보여줄 컬럼.
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-                Connect.Close();
-            }
-        }
+        public static string DbPath = "";
+        //public const string DbPath = "Data Source=222.235.141.8; Initial Catalog=TEAM2; User ID= 2JO ; Password = 1234 ";
+        //public const string DbPath = "Data Source = (local); Initial Catalog  = TEAM2; Integrated Security = SSPI;";
 
         private DataTable dtTemp = new DataTable();
 
