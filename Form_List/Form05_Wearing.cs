@@ -15,7 +15,7 @@ using System.Runtime.Remoting.Contexts;
 
 namespace Form_List
 {
-    public partial class Form05_Wearing : Form
+    public partial class Form05_Wearing : Common.Base_Form
     {
         public Form05_Wearing()
         {
@@ -38,7 +38,7 @@ namespace Form_List
             dtpEnd.Text = common.sTimer;
         }
 
-        private void btnSearch_Click(object sender = null, EventArgs e = null)
+        public override void DoInquire()
         {
             string sItemCode  = txtItemCode.Text; // 품목코드 일력 정보
             string sItemName  = txtItemName.Text; // 품목명 입력 정보
@@ -146,7 +146,7 @@ namespace Form_List
                 DataTable dtTemp = new DataTable();
                 Adapter.Fill(dtTemp);
                 bFlag = true;
-                btnSearch_Click();
+                DoInquire();
             }
             catch(Exception ex)
             {

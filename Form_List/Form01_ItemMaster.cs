@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Form_List
 {
-    public partial class Form01_ItemMaster : Form
+    public partial class Form01_ItemMaster : Common.Base_Form
     {
         public Form01_ItemMaster()
         {
@@ -58,7 +58,7 @@ namespace Form_List
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        public override void DoInquire()
         {
             string sItemCode = txtItemCode.Text;
             string sItemName = txtItemName.Text;

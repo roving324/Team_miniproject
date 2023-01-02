@@ -42,6 +42,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.myTabControlr = new Common.MyTabControlr();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.TSButton = new System.Windows.Forms.ToolStripButton();
             this.btnClose = new System.Windows.Forms.ToolStripButton();
             this.btnEnd = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -150,6 +151,7 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSButton,
             this.btnClose,
             this.btnEnd});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
@@ -157,6 +159,18 @@
             this.toolStrip1.Size = new System.Drawing.Size(800, 72);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // TSButton
+            // 
+            this.TSButton.Image = global::WindowsFormsApp1.Properties.Resources.BtnSearch;
+            this.TSButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TSButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSButton.Name = "TSButton";
+            this.TSButton.Size = new System.Drawing.Size(54, 69);
+            this.TSButton.Text = "조회";
+            this.TSButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.TSButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TSButton.Click += new System.EventHandler(this.TSButton_Click);
             // 
             // btnClose
             // 
@@ -168,7 +182,7 @@
             this.btnClose.Text = "닫기";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.TSButton_Click);
             // 
             // btnEnd
             // 
@@ -180,7 +194,7 @@
             this.btnEnd.Text = "종료";
             this.btnEnd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEnd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
+            this.btnEnd.Click += new System.EventHandler(this.TSButton_Click);
             // 
             // statusStrip1
             // 
@@ -275,5 +289,6 @@
         private System.Windows.Forms.ToolStripStatusLabel stsUserName;
         private System.Windows.Forms.ToolStripStatusLabel stsNowDateTime;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripButton TSButton;
     }
 }

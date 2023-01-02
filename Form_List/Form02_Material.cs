@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Form_List
 {
-    public partial class Form02_Material : Form
+    public partial class Form02_Material : Common.Base_Form
     {
         public Form02_Material()
         {
@@ -29,7 +29,7 @@ namespace Form_List
             Cm.InitCoilumnGrid(dgvGrid, "WEARINGDATE"  , "입고일자", typeof(string), 150, DataGridViewContentAlignment.MiddleLeft, false);
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        public override void DoInquire()
         {
             string sItemCode = txtItemCode.Text;
             string sItemName = txtItemName.Text;

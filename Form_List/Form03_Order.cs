@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Form_List
 {
-    public partial class Form03_Order : Form
+    public partial class Form03_Order : Common.Base_Form
     {
         public Form03_Order()
         {
@@ -34,7 +34,7 @@ namespace Form_List
             cboOderFlag.SelectedIndex = 0;
         }
 
-        private void btnSearch_Click(object sender = null, EventArgs e = null)
+        public override void DoInquire()
         {
             string sItemCode = txtItemCode.Text;
             string sItemName = txtItemName.Text;
@@ -133,7 +133,7 @@ namespace Form_List
                 DataTable dtTemp = new DataTable();
                 Adapter.Fill(dtTemp);
                 bFlag = true;
-                btnSearch_Click();
+                DoInquire();
             }
             catch (Exception ex)
             {

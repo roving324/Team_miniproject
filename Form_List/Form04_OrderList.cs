@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Form_List
 {
-    public partial class Form04_OrderList : Form
+    public partial class Form04_OrderList : Common.Base_Form
     {
         public Form04_OrderList()
         {
@@ -35,7 +35,7 @@ namespace Form_List
             dtpEnd.Text = common.sTimer;
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        public override void DoInquire()
         {
             string sItemCode  = txtItemCode.Text; // 품목코드 일력 정보
             string sItemName  = txtItemName.Text; // 품목명 입력 정보

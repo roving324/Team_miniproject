@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -16,6 +17,23 @@ namespace WindowsFormsApp1
     {
         public Form_Main()
         {
+            Form_SVConnect SVC = new Form_SVConnect();
+            SVC.Show();
+            SqlConnection sCon = new SqlConnection(common.DbPath);
+            try
+            {
+                sCon.Open();
+            }
+            catch
+            {
+                MessageBox.Show("서버연결에 실패하였습니다.");
+                Environment.Exit(0);
+            }
+            finally
+            {
+                if (sCon != null) sCon.Close();
+                SVC.Close();
+            }
             InitializeComponent();
         }
 
@@ -43,16 +61,6 @@ namespace WindowsFormsApp1
             stsFormName.Text = e.ClickedItem.Name.ToString(); // 품 클릭 시 품이름 띄우기
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            if (myTabControlr.TabPages.Count > 0) myTabControlr.SelectedTab.Dispose();
-        }
-
-        private void btnEnd_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("프로그램을 종료하시겠습니까?","프로그램 종료",MessageBoxButtons.YesNo) == DialogResult.Yes) this.Close();
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             stsNowDateTime.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
@@ -62,6 +70,31 @@ namespace WindowsFormsApp1
         {
             stsFormName.Text = "";
             common.sTimer = string.Format("{0:yyyy-MM-dd}", DateTime.Now);
+        }
+
+        private void TSButton_Click(object sender, EventArgs e)
+        {
+            if (myTabControlr.TabPages.Count == 0) return;
+            ToolStripButton tsButton = (ToolStripButton)sender;
+            string sBtnName = tsButton.Text;
+            DoFuncition(sBtnName);
+        }
+
+        void DoFuncition(string sName)
+        {
+            if (myTabControlr.SelectedTab.Controls[0] is Base_Form == false) return;
+            Base_Form Child = (Base_Form)myTabControlr.SelectedTab.Controls[0];
+            switch (sName)
+            {
+                case "조회": Child.DoInquire();
+                    break;
+                case "닫기":
+                    if (myTabControlr.TabPages.Count > 0) myTabControlr.SelectedTab.Dispose();
+                    break;
+                case "종료":
+                    if (MessageBox.Show("프로그램을 종료하시겠습니까?", "프로그램 종료", MessageBoxButtons.YesNo) == DialogResult.Yes) this.Close();
+                    break;
+            }
         }
     }
 }

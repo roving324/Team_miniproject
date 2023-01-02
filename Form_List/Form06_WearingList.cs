@@ -13,14 +13,14 @@ using System.Windows.Forms;
 
 namespace Form_List
 {
-    public partial class Form06_WearingList : Form
+    public partial class Form06_WearingList : Common.Base_Form
     {
         public Form06_WearingList()
         {
             InitializeComponent();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        public override void DoInquire()
         {
 
 

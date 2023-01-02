@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.txtItemCode = new System.Windows.Forms.TextBox();
             this.cboOderFlag = new System.Windows.Forms.ComboBox();
             this.txtItemName = new System.Windows.Forms.TextBox();
@@ -50,7 +49,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.txtItemCode);
             this.groupBox1.Controls.Add(this.cboOderFlag);
             this.groupBox1.Controls.Add(this.txtItemName);
@@ -63,16 +61,6 @@
             this.groupBox1.Size = new System.Drawing.Size(800, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(580, 41);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 10;
-            this.btnSearch.Text = "조회";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtItemCode
             // 
@@ -221,7 +209,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvGrid;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtItemCode;
         private System.Windows.Forms.ComboBox cboOderFlag;
         private System.Windows.Forms.TextBox txtItemName;

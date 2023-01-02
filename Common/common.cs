@@ -11,7 +11,8 @@ namespace Common
 {
     public class common
     {
-        public const string DbPath = "Data Source=222.235.141.8; Initial Catalog=TEAM2; User ID= 2JO ; Password = 1234 ";
+        //public const string DbPath = "Data Source=222.235.141.8; Initial Catalog=TEAM2; User ID= 2JO ; Password = 1234 ";
+        public const string DbPath = "Data Source = (local); Initial Catalog  = TEAM2; Integrated Security = SSPI;";
         public static string sTimer = "";
         
         public static void SetComboControl(string sMajorcode, ComboBox cboTemp)
