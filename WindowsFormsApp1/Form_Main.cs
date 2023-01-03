@@ -21,22 +21,7 @@ namespace WindowsFormsApp1
             _Login.ShowDialog();
             if(_Login.Tag == null) Environment.Exit(0);
             Form_SVConnect SVC = new Form_SVConnect();
-            SVC.Show();
-            SqlConnection sCon = new SqlConnection(common.DbPath);
-            try
-            {
-                sCon.Open();
-            }
-            catch
-            {
-                MessageBox.Show("서버연결에 실패하였습니다.");
-                Environment.Exit(0);
-            }
-            finally
-            {
-                if (sCon != null) sCon.Close();
-                SVC.Close();
-            }
+            SVC.ShowDialog();
             InitializeComponent();
         }
 
