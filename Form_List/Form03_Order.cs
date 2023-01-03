@@ -79,7 +79,7 @@ namespace Form_List
             string sItemCode = Convert.ToString(dgvGrid.CurrentRow.Cells["ITEMCODE"].Value);
             string sBusiness = txtBusiness.Text;
             string sOrderCount = txtOrderCount.Text;
-            string sOrderCode = sItemCode;
+            string sOrderCode = sItemCode + common.sTimer.Replace("-","");
             if (sOrderCount == "") 
             {
                 MessageBox.Show("수량을 입력해여합니다.");
