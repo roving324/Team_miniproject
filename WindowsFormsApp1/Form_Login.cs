@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
 
         private void btnLogin_Click(object sender = null, EventArgs e = null)
         {
-            common.DbPath = $"Data Source=27.35.129.96; Initial Catalog=TEAM2; User ID= {txtUserID.Text} ; Password = {txtUserPW.Text} ";
+            common.DbPath = $"Data Source=192.168.0.2; Initial Catalog=TEAM2; User ID= {txtUserID.Text} ; Password = {txtUserPW.Text} ";
             this.Tag = true;
             this.Close();
         }
