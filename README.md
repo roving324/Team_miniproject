@@ -31,16 +31,12 @@ MES Project - 원자재 관리 시스템
 - 클릭한 품 화면에 띄우기
 ```
 Assembly assembly = Assembly.LoadFrom($"{Application.StartupPath}\\Form_List.Dll");
-            // 클릭한 매뉴의 CS 파일 타입 확인 및 추출
             Type typeform = assembly.GetType($"Form_List.{e.ClickedItem.Name}", true);
-            // Form 형식으로 전환
             Form FormMdi = (Form)Activator.CreateInstance(typeform);
-            // 탭 페이지에 폼을 추가하여 오픈한다.
 
             bool bFlag = false;
             for (int i = 0; i <= myTabControlr.TabPages.Count - 1; i++)
             {
-                // 클릭한 매뉴의 이름과 오픈되어있는 페이지의 이름이 같다면.
                 if (myTabControlr.TabPages[i].Name == $"{e.ClickedItem.Name}")
                 {
                     myTabControlr.SelectedTab = myTabControlr.TabPages[i];
@@ -49,7 +45,7 @@ Assembly assembly = Assembly.LoadFrom($"{Application.StartupPath}\\Form_List.Dll
                 }
             }
             if (!bFlag) myTabControlr.AddForm(FormMdi);
-            stsFormName.Text = e.ClickedItem.Name.ToString(); // 품 클릭 시 품이름 띄우기
+            stsFormName.Text = e.ClickedItem.Name.ToString();
 ```
 
 <br/>
@@ -58,10 +54,8 @@ Assembly assembly = Assembly.LoadFrom($"{Application.StartupPath}\\Form_List.Dll
 ```
 SqlDataAdapter Adapter = new SqlDataAdapter("SP_ITEMMASTER_S1", sCon);
 
-                // Adapter 에게 저장 프로시저 형식의 SQL 을 실행할 것을 등록함.
                 Adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
 
-                // 저장 프로시저가 받을 파라매터(인자) 값 설정
                 Adapter.SelectCommand.Parameters.AddWithValue("@ITEMCODE", sItemCode);
                 Adapter.SelectCommand.Parameters.AddWithValue("@ITEMNAME", sItemName);
                 Adapter.SelectCommand.Parameters.AddWithValue("@ITEMTYPE", sItemType);
@@ -76,17 +70,11 @@ SqlDataAdapter Adapter = new SqlDataAdapter("SP_ITEMMASTER_S1", sCon);
 
 - Grid 메서드 생성
 ```
- // 1. 데이터 테이브에 컬럼과 타입 셋팅
             dtTemp.Columns.Add(sColumID, ColumType);
-            // 2. 그리드뷰에 컬럼 셋팅
             dgvTemp.DataSource = dtTemp;
-            // 3. 컬럼에 한글 명칭 TEXT 설정
             dgvTemp.Columns[sColumID].HeaderText = sColumnText;
-            // 4. 컬럼의 폭 지정
             dgvTemp.Columns[sColumID].Width = ColumWidth;
-            // 5. 컬럼 데이터 정렬
             dgvTemp.Columns[sColumID].DefaultCellStyle.Alignment = Align;
-            // 6. 컬럼의 수정 여부
             dgvTemp.Columns[sColumID].ReadOnly = !Editable;
 ```
 
@@ -96,19 +84,18 @@ SqlDataAdapter Adapter = new SqlDataAdapter("SP_ITEMMASTER_S1", sCon);
 ```
  public void AddForm(Form NewForm)
         {
-            if (NewForm == null) return;  // 인자로 받은 품이 없을 경우 실행 중지.
-            NewForm.TopLevel = false;     // 추가로 호출된 후속품이 두번째, 세번쩨 순으로 생성 되도록 설정.
-            TabPage page = new TabPage(); // 탭 페이지 객체 생성.
-            page.Controls.Clear();        // 페이지 초기화
-            page.Controls.Add(NewForm);   // 페이지 폼 추가
-            page.Text = NewForm.Text;     // 폼에서 설정한 명칭으로 탭 페이지 고유 명칭 설정.
-            page.Name = NewForm.Name;     // 폼에서 설정한 이름으로 탭 페이지 고유 이름 설정.
+            if (NewForm == null) return;  
+            NewForm.TopLevel = false;     
+            TabPage page = new TabPage(); 
+            page.Controls.Clear();        
+            page.Controls.Add(NewForm);   
+            page.Text = NewForm.Text;     
+            page.Name = NewForm.Name;     
 
-            // !!! base : 상속 해준 클래스를 지칭.
-            base.TabPages.Add(page);      // 탭 컨트롤에 페이지를 추가한다.
-            NewForm.Show();               // 인자로 받은 폼 페이지를 보여준다.
-            base.SelectedTab = page;      // 부모 컨트롤 TabControl 에서 현재 선택된 페이지를
-                                          // 호출한 폼의 페이지로 설정. (즉 생성된 페이지를 바로 보여준다.)
+            base.TabPages.Add(page);      
+            NewForm.Show();               
+            base.SelectedTab = page;      
+                                          
             
         }
 ```
