@@ -114,3 +114,22 @@ SqlDataAdapter Adapter = new SqlDataAdapter("SP_ITEMMASTER_S1", sCon);
 ```
 stsNowDateTime.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
 ```
+
+<br/>
+
+# 개발화면
+
+<br/>
+
+![메인화면](https://github.com/roving324/Material_Management_System/blob/master/Img/Main.PNG)
+메인화면 및 품목조회
+
+<br/>
+
+![발주화면](https://github.com/roving324/Material_Management_System/blob/master/Img/Order.PNG)
+발주관리
+
+<br/>
+
+![이력조회](https://github.com/roving324/Material_Management_System/blob/master/Img/List.PNG)
+이력조회
