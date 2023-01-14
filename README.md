@@ -95,8 +95,6 @@ SqlDataAdapter Adapter = new SqlDataAdapter("SP_ITEMMASTER_S1", sCon);
             base.TabPages.Add(page);      
             NewForm.Show();               
             base.SelectedTab = page;      
-                                          
-            
         }
 ```
 
