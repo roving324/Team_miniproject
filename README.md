@@ -123,13 +123,18 @@ stsNowDateTime.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
 
 ![메인화면](https://github.com/roving324/Material_Management_System/blob/master/Img/Main.PNG)
 메인화면 및 품목조회
+<p>기준이 되는 품목들을 조회하고 원자재에 종류별로 안정재고와 적정재고의 수량을 기입함으로서</p>
+<p>자재를 효과적으로 관리할 수 있도록 구현.</p>
 
 <br/>
 
 ![발주화면](https://github.com/roving324/Material_Management_System/blob/master/Img/Order.PNG)
 발주관리
+<p>발주 조회시 발주대상 여부를 확인 할 수 있으며 </p>
+<p>마지막 입고자, 입고 일시, 현재 입고 수량이 차감된 발주진행수량을 확인 할 수 있다.</p>
 
 <br/>
 
 ![이력조회](https://github.com/roving324/Material_Management_System/blob/master/Img/List.PNG)
 이력조회
+<p>품목 및 기간에 따라 이력을 조회할 수 있으며 마지막 입고자 및 거래처를 확인할 수 있다.</p>
