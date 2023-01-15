@@ -29,11 +29,11 @@ MES Project - 원자재 관리 시스템
 - 로근인 후 실행
 ```
  Form_Login _Login = new Form_Login();
-            _Login.ShowDialog();
-            if(_Login.Tag == null) Environment.Exit(0);
-            Form_SVConnect SVC = new Form_SVConnect();
-            SVC.ShowDialog();
-            InitializeComponent();
+_Login.ShowDialog();
+if(_Login.Tag == null) Environment.Exit(0);
+Form_SVConnect SVC = new Form_SVConnect();
+SVC.ShowDialog();
+InitializeComponent();
 ```
 
 <br/>
@@ -41,21 +41,21 @@ MES Project - 원자재 관리 시스템
 - 클릭한 품 화면에 띄우기
 ```
 Assembly assembly = Assembly.LoadFrom($"{Application.StartupPath}\\Form_List.Dll");
-            Type typeform = assembly.GetType($"Form_List.{e.ClickedItem.Name}", true);
-            Form FormMdi = (Form)Activator.CreateInstance(typeform);
+ Type typeform = assembly.GetType($"Form_List.{e.ClickedItem.Name}", true);
+ Form FormMdi = (Form)Activator.CreateInstance(typeform);
 
-            bool bFlag = false;
-            for (int i = 0; i <= myTabControlr.TabPages.Count - 1; i++)
-            {
-                if (myTabControlr.TabPages[i].Name == $"{e.ClickedItem.Name}")
-                {
-                    myTabControlr.SelectedTab = myTabControlr.TabPages[i];
-                    bFlag = true;
-                    break;
-                }
-            }
-            if (!bFlag) myTabControlr.AddForm(FormMdi);
-            stsFormName.Text = e.ClickedItem.Name.ToString();
+ bool bFlag = false;
+ for (int i = 0; i <= myTabControlr.TabPages.Count - 1; i++)
+ {
+     if (myTabControlr.TabPages[i].Name == $"{e.ClickedItem.Name}")
+     {
+         myTabControlr.SelectedTab = myTabControlr.TabPages[i];
+         bFlag = true;
+         break;
+     }
+ }
+if (!bFlag) myTabControlr.AddForm(FormMdi);
+stsFormName.Text = e.ClickedItem.Name.ToString();
 ```
 
 <br/>
@@ -64,28 +64,28 @@ Assembly assembly = Assembly.LoadFrom($"{Application.StartupPath}\\Form_List.Dll
 ```
 SqlDataAdapter Adapter = new SqlDataAdapter("SP_ITEMMASTER_S1", sCon);
 
-                Adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+Adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
 
-                Adapter.SelectCommand.Parameters.AddWithValue("@ITEMCODE", sItemCode);
-                Adapter.SelectCommand.Parameters.AddWithValue("@ITEMNAME", sItemName);
-                Adapter.SelectCommand.Parameters.AddWithValue("@ITEMTYPE", sItemType);
+Adapter.SelectCommand.Parameters.AddWithValue("@ITEMCODE", sItemCode);
+Adapter.SelectCommand.Parameters.AddWithValue("@ITEMNAME", sItemName);
+Adapter.SelectCommand.Parameters.AddWithValue("@ITEMTYPE", sItemType);
 
-                DataTable dtTemp = new DataTable();
-                Adapter.Fill(dtTemp);
+DataTable dtTemp = new DataTable();
+Adapter.Fill(dtTemp);
 
-                dgvGrid.DataSource = dtTemp;
+dgvGrid.DataSource = dtTemp;
 ```
 
 <br/>
 
 - Grid 메서드 생성
 ```
-            dtTemp.Columns.Add(sColumID, ColumType);
-            dgvTemp.DataSource = dtTemp;
-            dgvTemp.Columns[sColumID].HeaderText = sColumnText;
-            dgvTemp.Columns[sColumID].Width = ColumWidth;
-            dgvTemp.Columns[sColumID].DefaultCellStyle.Alignment = Align;
-            dgvTemp.Columns[sColumID].ReadOnly = !Editable;
+dtTemp.Columns.Add(sColumID, ColumType);
+dgvTemp.DataSource = dtTemp;
+dgvTemp.Columns[sColumID].HeaderText = sColumnText;
+dgvTemp.Columns[sColumID].Width = ColumWidth;
+dgvTemp.Columns[sColumID].DefaultCellStyle.Alignment = Align;
+dgvTemp.Columns[sColumID].ReadOnly = !Editable;
 ```
 
 <br/>
@@ -93,19 +93,19 @@ SqlDataAdapter Adapter = new SqlDataAdapter("SP_ITEMMASTER_S1", sCon);
 - 사용자 정의 컨트롤 생성
 ```
  public void AddForm(Form NewForm)
-        {
-            if (NewForm == null) return;  
-            NewForm.TopLevel = false;     
-            TabPage page = new TabPage(); 
-            page.Controls.Clear();        
-            page.Controls.Add(NewForm);   
-            page.Text = NewForm.Text;     
-            page.Name = NewForm.Name;     
+{
+    if (NewForm == null) return;  
+    NewForm.TopLevel = false;     
+    TabPage page = new TabPage(); 
+    page.Controls.Clear();        
+    page.Controls.Add(NewForm);   
+    page.Text = NewForm.Text;     
+    page.Name = NewForm.Name;     
 
-            base.TabPages.Add(page);      
-            NewForm.Show();               
-            base.SelectedTab = page;      
-        }
+    base.TabPages.Add(page);      
+    NewForm.Show();               
+    base.SelectedTab = page;      
+}
 ```
 
 <br/>
