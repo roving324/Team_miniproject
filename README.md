@@ -117,6 +117,17 @@ stsNowDateTime.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
 
 <br/>
 
+- 다중 막대 차트
+```
+chart1.DataBindCrossTable(DtTemp.AsEnumerable(), "ITEMNAME", "PRODDATE", "PRODQTY", "");//"Label=ITEMNAME");
+for (int i = 0; i < chart1.Series.Count; i++)
+{
+    chart1.Series[i].IsValueShownAsLabel = true;
+}
+```
+
+<br/>
+
 # 개발화면
 
 <br/>
