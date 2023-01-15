@@ -119,11 +119,31 @@ stsNowDateTime.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
 
 - 다중 막대 차트
 ```
-chart1.DataBindCrossTable(DtTemp.AsEnumerable(), "ITEMNAME", "PRODDATE", "PRODQTY", "");//"Label=ITEMNAME");
-for (int i = 0; i < chart1.Series.Count; i++)
-{
-    chart1.Series[i].IsValueShownAsLabel = true;
-}
+ chartItem.Series.Clear();
+                
+ //2. 조회된 DataTable 의 가장 큰 생산 수량을 Y 축에 셋팅
+ int iMaxQty = 0;
+ for (int i = 0; i < dtTemp.Rows.Count; i++)
+ {
+     if (Convert.ToInt32(dtTemp.Rows[i]["WEARINGCOUNT"]) > iMaxQty)
+     {
+         iMaxQty = Convert.ToInt32(dtTemp.Rows[i]["WEARINGCOUNT"]);
+     }
+ }
+ //iMaxQty: 최대수량
+ 
+ DataRow[] dr = dtTemp.Select("WEARINGCOUNT = MAX(WEARINGCOUNT)"); // [] MAX 값이 여러개라면
+
+ chartItem.ChartAreas[0].AxisY.Minimum = 0;
+ chartItem.ChartAreas[0].AxisY.Maximum = Convert.ToInt32(dr[0]["WEARINGCOUNT"]) + 5;
+ 
+ // 3. 데이터 테이블을 차트에 바인딩 (매핑)
+ chartItem.DataBindTable(dtTemp.DefaultView, "WEARINGDATE");
+
+ // 4. 막대 차트로 표현해야 하는 데이터의 이름과 설정 정보 등록.
+ chartItem.Series[0].Name = Convert.ToString(dtTemp.Rows[0]["ITEMNAME"]);
+ chartItem.Series[0].Color = Color.Blue;        
+ chartItem.Series[0].IsValueShownAsLabel = true;
 ```
 
 <br/>
