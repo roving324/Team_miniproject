@@ -22,12 +22,22 @@ MES Project - 원자재 관리 시스템
 
 <br/>
 
+# 요구사항
+![요구사항](https://github.com/roving324/Material_Management_System/blob/master/Img/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD.PNG)
+
+<br/>
+
 # TO-BE 프로세스
 ![TO-BE 프로세스](https://github.com/roving324/Material_Management_System/blob/master/Img/ToBe.PNG)
 
 <br/>
 
 ![TO-BE 프로세스](https://github.com/roving324/Material_Management_System/blob/master/Img/ToBe2.PNG)
+
+<br/>
+
+# 개발리스트
+![개발리스트](https://github.com/roving324/Material_Management_System/blob/master/Img/%EA%B0%9C%EB%B0%9C%EB%A6%AC%EC%8A%A4%ED%8A%B8.PNG)
 
 # Code
 
