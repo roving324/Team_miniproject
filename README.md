@@ -182,6 +182,78 @@ stsNowDateTime.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
 <p>발주 조회시 발주대상 여부를 확인 할 수 있으며 </p>
 <p>마지막 입고자, 입고 일시, 현재 입고 수량이 차감된 발주진행수량을 확인할 수 있다.</p>
 
+## 발주관리 조회()
+```
+SELECT A.ITEMCODE
+	  ,A.ITEMNAME
+	  ,A.MATERIALCOUNT
+	  ,A.REGISTRANT
+	  ,A.WEARINGDATE
+	  ,A.ORDERFLAG
+	  ,A.NOWORDERCOUNT
+  FROM(   SELECT A.ITEMCODE		AS ITEMCODE		
+	           ,B.ITEMNAME      AS ITEMNAME      
+	           ,C.MATERIALCOUNT AS MATERIALCOUNT 
+			   ,A.REGISTRANT	AS REGISTRANT	
+			   ,A.WEARINGDATE	AS WEARINGDATE	
+			   ,(CASE WHEN  ISNULL(C.MATERIALCOUNT,0) + ISNULL(A.NOWORDERCOUNT,0) >= B.STABLESTOCK THEN 'N'
+	                  ELSE 'Y' 
+		               END)     AS ORDERFLAG
+			   ,A.NOWORDERCOUNT AS NOWORDERCOUNT
+	       FROM(  SELECT A.ITEMCODE	                                                       AS ITEMCODE	
+                        ,C.REGISTRANT	                                                   AS REGISTRANT	
+		                ,C.WEARINGDATE                                                     AS WEARINGDATE
+		                ,(CASE WHEN SUM(ORDERCOUNT) - ISNULL(B.WEARINGCOUNT,0) < 0 THEN 0
+						       ELSE SUM(ORDERCOUNT) - ISNULL(B.WEARINGCOUNT,0) END)        AS NOWORDERCOUNT
+			        FROM TB_Order A LEFT JOIN (  SELECT ITEMCODE          AS ITEMCODE
+			                                           ,SUM(WEARINGCOUNT) AS WEARINGCOUNT
+			   							           FROM TB_WEARING 
+			   							       GROUP BY ITEMCODE) B
+			                               ON A.ITEMCODE = B.ITEMCODE
+			                        LEFT JOIN TB_WEARING C
+			                               ON A.ITEMCODE = C.ITEMCODE
+									WHERE C.ENDFLAG = 'Y'
+                GROUP BY A.ITEMCODE , B.WEARINGCOUNT, C.REGISTRANT ,C.WEARINGDATE
+			)A LEFT JOIN TB_ITEMMASTER B
+			          ON A.ITEMCODE = B.ITEMCODE
+			   LEFT JOIN TB_MATERIAL C
+			          ON A.ITEMCODE = C.ITEMCODE
+
+          UNION ALL
+
+         SELECT A.ITEMCODE	                                                                AS ITEMCODE	   
+		       ,C.ITEMNAME	                                                                AS ITEMNAME	   
+		       ,A.MATERIALCOUNT                                                             AS MATERIALCOUNT
+		       ,D.REGISTRANT                                                                AS REGISTRANT   
+		       ,D.WEARINGDATE                                                               AS WEARINGDATE  
+		       ,(CASE WHEN  A.MATERIALCOUNT + E.NOWORDERCOUNT >= C.STABLESTOCK THEN 'N'
+	                  ELSE 'Y' 
+		               END)                                                                 AS ORDERFLAG
+		       ,ISNULL(SUM(B.ORDERCOUNT),'')                                                AS NOWORDERCOUNT
+           FROM TB_MATERIAL A LEFT JOIN TB_Order B
+                                     ON A.ITEMCODE = B.ITEMCODE
+          					  LEFT JOIN TB_ITEMMASTER C
+          					         ON A.ITEMCODE = C.ITEMCODE
+          					  LEFT JOIN TB_WEARING D
+          					         ON A.ITEMCODE = D.ITEMCODE
+          				      LEFT JOIN (  SELECT A.ITEMCODE
+					                             ,(CASE WHEN SUM(ORDERCOUNT) - ISNULL(B.WEARINGCOUNT,0) <0 THEN 0
+						                                ELSE SUM(ORDERCOUNT) - ISNULL(B.WEARINGCOUNT,0) END)     AS NOWORDERCOUNT
+							                 FROM TB_Order A LEFT JOIN (  SELECT ITEMCODE          AS ITEMCODE
+											                                    ,SUM(WEARINGCOUNT) AS WEARINGCOUNT 
+											                                FROM TB_WEARING 
+											                            GROUP BY ITEMCODE) B
+											   		                ON A.ITEMCODE = B.ITEMCODE
+							             GROUP BY A.ITEMCODE , B.WEARINGCOUNT) E
+								     ON A.ITEMCODE = E.ITEMCODE
+          WHERE (B.ORDERCOUNT IS NOT NULL
+            AND D.REGISTRANT IS NULL) OR (B.ORDERCOUNT IS NULL AND D.WEARINGCOUNT IS NULL)
+       GROUP BY A.ITEMCODE, C.ITEMNAME, A.MATERIALCOUNT, D.REGISTRANT, D.WEARINGDATE, A.ORDERFLAG, E.NOWORDERCOUNT, C.STABLESTOCK) A
+ WHERE A.ITEMCODE  LIKE '%' + @ITEMCODE + '%'
+   AND A.ITEMNAME  LIKE '%' + @ITEMNAME + '%'
+   AND A.ORDERFLAG LIKE '%' + @OderFlag
+```
+
 <br/>
 <hr/>
 
