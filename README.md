@@ -182,7 +182,7 @@ stsNowDateTime.Text = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
 <p>발주 조회시 발주대상 여부를 확인 할 수 있으며 </p>
 <p>마지막 입고자, 입고 일시, 현재 입고 수량이 차감된 발주진행수량을 확인할 수 있다.</p>
 
-## 발주관리 조회()
+## 발주관리 조회(SQL)
 ```
 SELECT A.ITEMCODE
 	  ,A.ITEMNAME
