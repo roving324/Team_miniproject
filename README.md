@@ -253,10 +253,21 @@ SELECT A.ITEMCODE
    AND A.ITEMNAME  LIKE '%' + @ITEMNAME + '%'
    AND A.ORDERFLAG LIKE '%' + @OderFlag
 ```
+<br/>
+<hr/>
+
+![입고관리](https://github.com/roving324/Material_Management_System/blob/master/Img/WEARING.PNG)
+**입고관리**
 
 <br/>
 <hr/>
 
-![이력조회](https://github.com/roving324/Material_Management_System/blob/master/Img/List.PNG)
-**이력조회**
+![발주이력조회](https://github.com/roving324/Material_Management_System/blob/master/Img/OrderList.PNG)
+**발주이력조회**
+
+<br/>
+<hr/>
+
+![입고이력조회](https://github.com/roving324/Material_Management_System/blob/master/Img/List.PNG)
+**입고이력조회**
 <p>품목 및 기간에 따라 이력을 조회할 수 있으며 마지막 입고자 및 거래처를 확인할 수 있다.</p>
