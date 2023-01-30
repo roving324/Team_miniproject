@@ -258,12 +258,14 @@ SELECT A.ITEMCODE
 
 ![입고관리](https://github.com/roving324/Material_Management_System/blob/master/Img/WEARING.PNG)
 **입고관리**
+<P>입고관리에서 일자별 발주종류와 발주 수량대비 진행 수량을 확인 할 수 있다.</P>
 
 <br/>
 <hr/>
 
 ![발주이력조회](https://github.com/roving324/Material_Management_System/blob/master/Img/OrderList.PNG)
 **발주이력조회**
+<P>발주 코드와 일자별로 입고수량과 거래처가 실시간 기록된다.</P>
 
 <br/>
 <hr/>
