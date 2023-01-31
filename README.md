@@ -43,7 +43,7 @@ WMS Project - 창고 관리 시스템
 
 <br/>
 
-- 로근인 후 실행
+- 로그인 후 실행
 ```
  Form_Login _Login = new Form_Login();
 _Login.ShowDialog();
